@@ -1,0 +1,54 @@
+Qué es vagrant?
+
+Vagrant es una herramienta para desarrolladores, diseñadores, administradores de sistemas, etc. que facilita la creación de entornos o máquinas virtuales para desarrollo, pruebas de infraestructuras, etc.
+
+Vagrant permite encapsular nuestro entorno de desarrollo, de tal forma que sea distribuible de forma idéntica a cualquier integrante de nuestro equipo de trabajo, eliminando la excusa de “hazlo trabajar en mi máquina”.
+Instalación
+
+La instalación de Vagrant es sencilla, cuenta con instaladores para Mac OS X, Windows y Linux. 
+
+Los puedes descargar aquí.
+
+https://www.vagrantup.com/downloads.html
+
+Después de haber instalado Vagrant tendrás acceso a él desde la línea de comandos mediante el comando vagrant (Es posible que debas reiniciar tu equipo para que los cambios tomen efecto).
+
+Antes de crear un entorno virtual con vagrant debemos instalar alguno de los proveedores que utiliza,  entre los cuales encontramos: VirtualBox , VMWare, AWS, entre otros. Procedemos a instalar el proveedor VirtualBox para crear el entorno virtual desde vagrant.
+Creando nuestro primer entorno de desarrollo
+
+Después de haber instalador VirtualBox, vamos a correr una máquina virtual Ubuntu desde nuestro equipo.
+
+Creamos el directorio vagrant/ubuntu-12.04-lts-32-bit (En este directorio se almacenará la información relacionada a nuestro entorno virtual, el nombre de la carpeta puede ser cualquiera), y nos ubicamos en el directorio e ingresamos el siguiente comando:
+
+    $ vagrant init  hashicorp/precise32
+
+Mediante el comando anterior estamos inicializando un entorno virtual utilizando la imagen (box) hashicorp/precise32 (Más adelante veremos a detalle que son las cajas – boxes).
+
+El resultado es el siguiente:
+
+vagrant-init.png
+
+Al inicializar nuestra máquina virtual se crea el archivo Vagrantfile en el directorio, la función principal de este archivo es describir el tipo de máquina requerida, establece cómo configurar y proveer de características a esta máquina.
+
+Ahora ejecutamos nuestra máquina mediante el siguiente comando:
+
+    $ vagrant up
+
+Revisando la respuesta nos encontramos lo siguiente:
+
+    Se verifica si la caja (box – imagen del sistema) a utilizar se encuentra instalada. Si no se encuentra instalada vagrant intenta instalarla.
+
+    Se establece el nombre de la máquina virtual, ejemplo “ubuntu-12.04-lts-32-bit_default_1452178421807_40435, que es el nombre de nuestra carpeta y un código de identificación adicional que agrega vagrant.
+
+    Se crea un acceso por SSH. En mi caso se ha creado el siguiente acceso:Dirección SSH: 127.0.0.1:2222
+    Usuario: vagrant* El password de acceso por SSH es el mismo nombre de usuario.
+
+    Copia la carpeta oculta .vagrant en el directorio actual. Esta carpeta contiene información relacionada a la máquina virtual instalada.
+
+Ahora podemos acceder por SSH a nuestra máquina virtual. Para acceder por SSH a nuestra máquina virtual desde Windows podemos utilizar el cliente SSH Putty, o aún de forma más cómoda desde vagrant:
+
+    $ vagrant ssh
+
+    Para utilizar vagrant ssh en Windows debemos tener instalado un cliente SSH y este debe estar registrado en la variable de configuración %PATH%. Algunos de los clientes que puedes utilizar son Cygwin, MinGW o Git.
+
+Por último utilizamos vagrant destroy para parar la máquina virtual, eliminando todas sus trazas.

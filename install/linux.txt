@@ -1,0 +1,16 @@
+-- Descargar el paquete
+
+https://www.vagrantup.com/downloads.html
+
+-- Descomprimir
+
+unzip vagrant.zip
+
+-- Moverlo
+
+sudo mv terraform /usr/local/bin/
+
+-- Darle permisos
+
+chown root.root /usr/local/bin/vagrant
+chmod -R 775 /usr/local/bin/vagrant
